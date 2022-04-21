@@ -1,0 +1,25 @@
+body {
+  background-color:azure;
+}
+
+.cardContainer {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  align-content: stretch;
+  grid-auto-rows: 1fr;
+}
+
+img {
+  border-radius: 2;
+}
+
+#name {
+  background-color: lightgrey;
+}
+
+#type {
+  background-color: cadetblue;
+}
