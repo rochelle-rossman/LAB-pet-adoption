@@ -2,24 +2,67 @@ body {
   background-color:azure;
 }
 
+.buttons {
+  display: flex;
+  justify-content: center;
+  row-gap: 50px;
+  column-gap: 50px;
+  position: relative;
+  margin-top: 10px;
+
+}
+
+#cat-btn{
+  background-color: #900C3F;
+
+}
+
+#dog-btn {
+  background-color: #FFC300 ;
+
+}
+
+#dino-btn {
+  background-color: #FF5733;
+
+}
+
+#all-btn {
+  background-color: #C70039;
+
+}
+
 .cardContainer {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   margin: 10px;
   padding: 10px;
   text-align: center;
-  align-content: stretch;
-  grid-auto-rows: 1fr;
+  row-gap: 50px;
+  column-gap: 50px;
+  /* position: relative; */
 }
 
 img {
   border-radius: 2;
+
 }
+
 
 #name {
   background-color: lightgrey;
 }
 
-#type {
+.card-header {
+  font-weight: bold;
+}
+
+.card-footer {
   background-color: cadetblue;
+  
+}
+
+#specialSkill {
+font-size: large;
 }

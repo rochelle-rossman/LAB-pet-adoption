@@ -219,11 +219,11 @@ let domString = "";
 for (const animal of pets) {
 
   domString += `<div class="card" style="width: 18rem;">
-    <div id="name"><h5>${animal.name}</h5></div>
+    <div id="name" class="card-header">${animal.name}</div>
     <div id="image"><img src="${animal.imageUrl}" class="card-img-top" alt="..."></div>
     <div id="color"><h6>${animal.color}</h6></div>
     <div id="specialSkill">${animal.specialSkill}</div>
-    <div id="type">${animal.type}</div>
+    <div id="type" class="card-footer">${animal.type}</div>
 </div>`;
 }
 pet.innerHTML = domString;
