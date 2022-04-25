@@ -1,68 +1,47 @@
 body {
-  background-color:azure;
+  background-color:cornsilk;
 }
 
-.buttons {
+#buttonContainer {
   display: flex;
   justify-content: center;
-  row-gap: 50px;
-  column-gap: 50px;
-  position: relative;
-  margin-top: 10px;
-
 }
 
-#cat-btn{
-  background-color: #900C3F;
-
+button {
+  margin: 10px;
 }
 
-#dog-btn {
-  background-color: #FFC300 ;
-
-}
-
-#dino-btn {
-  background-color: #FF5733;
-
-}
-
-#all-btn {
-  background-color: #C70039;
-
-}
-
-.cardContainer {
+#cardContainer {
   display: flex;
   flex-flow: row wrap;
+  row-gap: 10px;
+  column-gap: 10px;
   justify-content: center;
-  margin: 10px;
-  padding: 10px;
   text-align: center;
-  row-gap: 50px;
-  column-gap: 50px;
-  /* position: relative; */
 }
 
-img {
-  border-radius: 2;
-
+.card {
+background-color: whitesmoke;
+border-style: groove;
+height: 100%;
 }
 
-
-#name {
-  background-color: lightgrey;
+#image {
+padding: 5px;
 }
 
-.card-header {
-  font-weight: bold;
+#cat {
+  background-color: #900C3F;
 }
 
-.card-footer {
-  background-color: cadetblue;
-  
+#dog {
+  background-color: #FFC300 ;
 }
 
-#specialSkill {
-font-size: large;
+#dino {
+  background-color: #FF5733;
+}
+
+#all {
+  background-color: #C70039;
 }

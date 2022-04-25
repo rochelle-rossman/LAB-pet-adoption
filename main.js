@@ -211,19 +211,55 @@ const pets = [
       type: "dino",
       imageUrl: "https://assets.puzzlefactory.pl/puzzle/211/488/original.jpg"
     }
-  ];
+];
+  
 
-const pet = document.querySelector("#pet");
+
 let domString = "";
+//UTILITY FUNCTION
+const renderToDom = (divId, textToRender) => {
+  const selectedElement = document.querySelector(divId);
+  selectedElement.innerHTML = textToRender;
+};
 
-for (const animal of pets) {
 
-  domString += `<div class="card" style="width: 18rem;">
-    <div id="name" class="card-header">${animal.name}</div>
-    <div id="image"><img src="${animal.imageUrl}" class="card-img-top" alt="..."></div>
-    <div id="color"><h6>${animal.color}</h6></div>
-    <div id="specialSkill">${animal.specialSkill}</div>
-    <div id="type" class="card-footer">${animal.type}</div>
+//CARDS ON DOM
+const cardsOnDom = () => {
+  let domString = "";
+  for (const animal of pets) {
+    domString +=
+      `<div class="card" style="width: 18rem;">
+  
+      <div id="name" class="card-header">${animal.name}</div>
+      <div id="image"><img src="${animal.imageUrl}" class="card-img-top" alt="..."></div>
+      <div id="color"><h6>${animal.color}</h6></div>
+      <div id="specialSkill">${animal.specialSkill}</div>
+      <div id="type" class="card-footer">${animal.type}</div>
+    
 </div>`;
+  }
+  renderToDom('#cardContainer', domString)
 }
-pet.innerHTML = domString;
+
+//EVENT LISTENERS
+const eventListeners = () => {
+  
+  document.querySelector('#buttonContainer').addEventListener('click', (e) => {
+   console.log('clicked', e.target.id)
+    if (e.target.id === 'all') {
+      cardsOnDom(pets)
+    } else if (e.target.id === "dog") {
+      const dog = pets.filter((taco) => taco.type === e.target.id);
+      cardsOnDom(dog);
+    } 
+  }
+  );
+}
+
+//ON APP START
+const startApp = () => {
+  cardsOnDom(pets);
+  eventListeners(); // always last
+};
+
+startApp();
