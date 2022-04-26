@@ -20,14 +20,19 @@ button {
   text-align: center;
 }
 
+#modalContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .card {
 background-color: whitesmoke;
 border-style: groove;
 height: 100%;
 }
 
-#image {
-padding: 5px;
+.card-body {
+  height: 100%;
 }
 
 #cat {
