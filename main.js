@@ -222,11 +222,20 @@ const renderToDom = (divId, textToRender) => {
   selectedElement.innerHTML = textToRender;
 };
 
+const renderButtons = () => {
+  let domString = "";
+  domString =
+    `<button id="cat" type="button" class="btn btn-primary">Cat</button>
+    <button id="dog" type="button" class="btn btn-primary">Dog</button>
+    <button id="dino" type="button" class="btn btn-primary">Dino</button>
+    <button id="all" type="button" class="btn btn-primary">All</button>`;
+  renderToDom("#buttonContainer", domString)
+};
 
 //CARDS ON DOM
-const cardsOnDom = () => {
+const cardsOnDom = (taco) => {
   let domString = "";
-  for (const animal of pets) {
+  for (const animal of taco) {
     domString +=
       `<div class="card" style="width: 18rem;">
   
@@ -235,31 +244,117 @@ const cardsOnDom = () => {
       <div id="color"><h6>${animal.color}</h6></div>
       <div id="specialSkill">${animal.specialSkill}</div>
       <div id="type" class="card-footer">${animal.type}</div>
-    
-</div>`;
+  
+      </div>`;
   }
-  renderToDom('#cardContainer', domString)
-}
+  renderToDom('#cardContainer', domString);
+};
+
+//MODAL ON DOM
+const addPetModal = () => {
+  let domString = "";
+  domString = `<!-- Button trigger modal -->
+    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#add-pet">
+    Add Pet
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="add-pet" tabindex="-1" aria-labelledby="add-pet" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen-md-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Pet</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal-body">
+        
+          <form>
+          <div class="form-floating mb-3">
+            <input class="form-control form-control-lg" type="text" placeholder="Animal Id" id="animalId" aria-label="animal id" required>
+            <label for="animalId">Pet's name</label>
+          </div>
+
+           <div class="form-floating mb-3">
+            <input class="form-control form-control-lg" type="text" placeholder="imageURL" id="imageUrl" aria-label="imageUrl" required>
+            <label for="animalId">ImageURL</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input class="form-control form-control-lg" type="text" placeholder="Color" id="color" aria-label="color" required>
+            <label for="title">Color</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input class="form-control form-control-lg" type="text" placeholder="specialSkill" id="specialSkill" aria-label="specialSkill" required>
+            <label for="title">Special Skill</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select class="form-select form-control-lg" id="type" aria-label="type" required>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="dino">Dino</option>
+            </select>
+            <label for="category">Type</label>
+          </div>
+      
+      <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  renderToDom('#modalContainer', domString);
+  console.log("Modal");
+};
 
 //EVENT LISTENERS
-const eventListeners = () => {
-  
+function eventListeners() {
+  let domString = "";
   document.querySelector('#buttonContainer').addEventListener('click', (e) => {
-   console.log('clicked', e.target.id)
+    console.log('clicked', e.target.id);
     if (e.target.id === 'all') {
-      cardsOnDom(pets)
+      cardsOnDom(pets);
     } else if (e.target.id === "dog") {
       const dog = pets.filter((taco) => taco.type === e.target.id);
+      domString = dog;
       cardsOnDom(dog);
-    } 
+    } else if (e.target.id === "cat") {
+      const cat = pets.filter((taco) => taco.type === e.target.id);
+      domString = cat;
+      cardsOnDom(cat);
+    } else if (e.target.id === "dino") {
+      const dino = pets.filter((taco) => taco.type === e.target.id);
+      domString = dino;
+      cardsOnDom(dino);
+    }
   }
   );
-}
+  const form = document.querySelector('form');
+  form.addEventListener("submit", (e) => {
+      e.preventDefault(); 
+      newPetObject = {
+        name: document.querySelector("#animalId").value,
+        color: document.querySelector("#color").value,
+        specialSkill: document.querySelector("#specialSkill").value,
+        type: document.querySelector("#type").value,
+        // imageUrl: document.querySelector("#imageURL").value,
+      },
+    pets.push(newPetObject); 
+    cardsOnDom(pets); 
+    form.reset()
+
+    });
+};
+
+  
+
 
 //ON APP START
-const startApp = () => {
+function startApp() {
+  renderButtons();
+  addPetModal();
   cardsOnDom(pets);
-  eventListeners(); // always last
-};
+  eventListeners();
+}
 
 startApp();
