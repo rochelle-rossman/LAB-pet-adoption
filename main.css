@@ -18,6 +18,7 @@ button {
   column-gap: 10px;
   justify-content: center;
   text-align: center;
+  /* align-items: stretch; */
 }
 
 #modalContainer {
@@ -25,10 +26,16 @@ button {
   justify-content: center;
 }
 
+#remove-pet {
+  background-color: black;
+  color: white;
+}
+
 .card {
 background-color: whitesmoke;
 border-style: groove;
 height: 100%;
+/* align-self: stretch; */
 }
 
 .card-body {
