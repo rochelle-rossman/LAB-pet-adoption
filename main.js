@@ -213,7 +213,10 @@ const pets = [
     }
 ];
   
-
+pets.forEach(function(animal, index, array){
+  animal.id = index + 1;      
+  // console.log(animal.id);
+});                          
 
 let domString = "";
 //UTILITY FUNCTION
@@ -222,6 +225,7 @@ const renderToDom = (divId, textToRender) => {
   selectedElement.innerHTML = textToRender;
 };
 
+//BUTTONS
 const renderButtons = () => {
   let domString = "";
   domString =
@@ -244,6 +248,7 @@ const cardsOnDom = (taco) => {
       <div id="color"><h6>${animal.color}</h6></div>
       <div id="specialSkill">${animal.specialSkill}</div>
       <div id="type" class="card-footer">${animal.type}</div>
+      <button type="button" id="remove-pet--${animal.id}">Remove</button>
   
       </div>`;
   }
@@ -254,7 +259,7 @@ const cardsOnDom = (taco) => {
 const addPetModal = () => {
   let domString = "";
   domString = `<!-- Button trigger modal -->
-    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#add-pet">
+    <button type="button" class="btn-add-pet" data-bs-toggle="modal" data-bs-target="#add-pet">
     Add Pet
     </button>
     <!-- Modal -->
@@ -297,7 +302,7 @@ const addPetModal = () => {
             <label for="category">Type</label>
           </div>
       
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Submit</button>
         </form>
           </div>
         </div>
@@ -329,6 +334,19 @@ function eventListeners() {
     }
   }
   );
+
+  document.querySelector('#cardContainer').addEventListener('click', (e) => {
+    if (e.target.id.includes('remove-pet')) {
+      const [method, animalId] = e.target.id.split("--");
+      const index = pets.findIndex((taco) => taco.id === parseInt(animalId));
+      console.log('remove', e.target.id)
+      pets.splice(index, 1);
+      cardsOnDom(pets);
+
+    };
+
+  });
+  
   const form = document.querySelector('form');
   form.addEventListener("submit", (e) => {
       e.preventDefault(); 
@@ -337,10 +355,11 @@ function eventListeners() {
         color: document.querySelector("#color").value,
         specialSkill: document.querySelector("#specialSkill").value,
         type: document.querySelector("#type").value,
-        // imageUrl: document.querySelector("#imageURL").value,
+        imageUrl: document.querySelector("#imageUrl").value,
       },
     pets.push(newPetObject); 
-    cardsOnDom(pets); 
+    cardsOnDom(pets);
+    
     form.reset()
 
     });
