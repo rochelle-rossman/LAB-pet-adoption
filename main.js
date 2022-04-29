@@ -244,7 +244,7 @@ const cardsOnDom = (taco) => {
   
       <div id="name" class="card-header">${animal.name}</div>
       <div id="animal-index">${animal.id}</div>
-      <div id="image"><img src="${animal.imageUrl}" class="card-img-top" alt="..."></div>
+      <div id="image"><img src="${animal.imageUrl}" class="card-img-top" alt="${animal.type}"></div>
       <div id="color"><b>Color: </b>${animal.color}</div>
       <div id="specialSkill"><b>Special Skill: </b>${animal.specialSkill}</div>
       <div class="card-footer footer-for-${animal.type}"">
