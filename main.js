@@ -1,5 +1,3 @@
-console.log("Pet Adoption")
-
 const pets = [
     {
       name: "Dusty",
@@ -212,11 +210,12 @@ const pets = [
       imageUrl: "https://assets.puzzlefactory.pl/puzzle/211/488/original.jpg"
     }
 ];
-  
-pets.forEach(function(animal, index, array){
-  animal.id = index + 1;      
-  // console.log(animal.id);
-});                          
+
+const giveID = () => {
+  pets.forEach((animal, index) => {
+    animal.id = index + 1;
+  }); 
+}                   
 
 let domString = "";
 //UTILITY FUNCTION
@@ -229,9 +228,9 @@ const renderToDom = (divId, textToRender) => {
 const renderButtons = () => {
   let domString = "";
   domString =
-    `<button id="cat" type="button" class="btn btn-primary">Cat</button>
-    <button id="dog" type="button" class="btn btn-primary">Dog</button>
-    <button id="dino" type="button" class="btn btn-primary">Dino</button>
+    `<button id="cat" type="button" class="btn btn-primary">Cats</button>
+    <button id="dog" type="button" class="btn btn-primary">Dogs</button>
+    <button id="dino" type="button" class="btn btn-primary">Dinos</button>
     <button id="all" type="button" class="btn btn-primary">All</button>`;
   renderToDom("#buttonContainer", domString)
 };
@@ -244,11 +243,14 @@ const cardsOnDom = (taco) => {
       `<div class="card" style="width: 18rem;">
   
       <div id="name" class="card-header">${animal.name}</div>
+      <div id="animal-index">${animal.id}</div>
       <div id="image"><img src="${animal.imageUrl}" class="card-img-top" alt="..."></div>
-      <div id="color"><h6>${animal.color}</h6></div>
-      <div id="specialSkill">${animal.specialSkill}</div>
-      <div id="type" class="card-footer">${animal.type}</div>
-      <button type="button" id="remove-pet--${animal.id}">Remove</button>
+      <div id="color"><b>Color: </b>${animal.color}</div>
+      <div id="specialSkill"><b>Special Skill: </b>${animal.specialSkill}</div>
+      <div class="card-footer footer-for-${animal.type}"">
+        ${animal.type}
+        </div>
+     <div><button type="button" id="remove-pet--${animal.id}">Remove</button></div>
   
       </div>`;
   }
@@ -309,14 +311,12 @@ const addPetModal = () => {
       </div>
     </div>`;
   renderToDom('#modalContainer', domString);
-  console.log("Modal");
 };
 
 //EVENT LISTENERS
 function eventListeners() {
   let domString = "";
   document.querySelector('#buttonContainer').addEventListener('click', (e) => {
-    console.log('clicked', e.target.id);
     if (e.target.id === 'all') {
       cardsOnDom(pets);
     } else if (e.target.id === "dog") {
@@ -350,17 +350,19 @@ function eventListeners() {
   const form = document.querySelector('form');
   form.addEventListener("submit", (e) => {
       e.preventDefault(); 
-      newPetObject = {
-        name: document.querySelector("#animalId").value,
-        color: document.querySelector("#color").value,
-        specialSkill: document.querySelector("#specialSkill").value,
-        type: document.querySelector("#type").value,
-        imageUrl: document.querySelector("#imageUrl").value,
-      },
-    pets.push(newPetObject); 
+    newPetObject = {
+      name: document.querySelector("#animalId").value,
+      color: document.querySelector("#color").value,
+      specialSkill: document.querySelector("#specialSkill").value,
+      type: document.querySelector("#type").value,
+      imageUrl: document.querySelector("#imageUrl").value,
+      // id: document.querySelector("#animal-index").value
+        
+    },
+    pets.push(newPetObject);
+    giveID();
     cardsOnDom(pets);
-    
-    form.reset()
+    form.reset();
 
     });
 };
@@ -370,6 +372,7 @@ function eventListeners() {
 
 //ON APP START
 function startApp() {
+  giveID();
   renderButtons();
   addPetModal();
   cardsOnDom(pets);
