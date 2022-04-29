@@ -1,5 +1,6 @@
 body {
   background-color:cornsilk;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 #buttonContainer {
@@ -17,13 +18,28 @@ button {
   row-gap: 10px;
   column-gap: 10px;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  /* align-items: stretch; */
+  margin: 10px;
 }
 
 #modalContainer {
   display: flex;
   justify-content: center;
+}
+
+.card-img-top {
+  align-self: center;
+  object-fit: cover;
+  height: 250px;
+  width: 250px;
+  margin: 10px;
+  border: solid 1px black;
+  
+}
+
+#specialSkill{
+  height: 75px;
 }
 
 #remove-pet {
@@ -35,25 +51,62 @@ button {
 background-color: whitesmoke;
 border-style: groove;
 height: 100%;
-/* align-self: stretch; */
+border: solid 2px black;
+}
+
+.card-header {
+  background-color: #DAF7A6;
+  border-bottom: 1px solid black;
+  font-weight: 800;
+}
+
+#color {
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
 }
 
 .card-body {
   height: 100%;
 }
 
+.btn-primary {
+  border-color: black;
+}
+
 #cat {
   background-color: #900C3F;
 }
 
+.footer-for-cat {
+  background-color: #900C3F;
+  color: white;
+}
+
 #dog {
-  background-color: #FFC300 ;
+  background-color: #FFC300;
+}
+
+.footer-for-dog{
+background-color: #FFC300;
+color: white;
 }
 
 #dino {
   background-color: #FF5733;
 }
 
+.footer-for-dino {
+  background-color: #FF5733;
+  color: white;
+}
+
 #all {
   background-color: #C70039;
+}
+
+.btn-add-pet {
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  padding: 6px 12px;
 }
